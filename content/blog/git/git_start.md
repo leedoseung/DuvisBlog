@@ -22,8 +22,9 @@ $ git commit -m '내용'
 ```
 ##Push
 커밋을 공동(원격)저장소에 올리고 싶다.
-git push origin master
-
+```sh
+$ git push origin master
+```
 
 ##Pull
 다른 사람이 개발한 코드(커밋)을 내 컴퓨터에 받아오고 싶어요.
