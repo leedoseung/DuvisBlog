@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-bee",
+  "name": "DuvisBlog",
   "private": true,
-  "description": "Gatsby blog starter template",
+  "description": "1일 1포스팅 ",
   "version": "0.1.0",
-  "author": "Jbee[JaeYeopHan]<ljyhanll@gmail.com>",
+  "author": "Duvis[DooSeungLee]<leedoseu@gmail.com>",
   "bugs": {
     "url": "https://github.com/JaeYeopHan/gatsby-starter-bee/issues"
   },
