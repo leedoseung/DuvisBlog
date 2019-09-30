@@ -1,7 +1,7 @@
 ---
 title: Asynchronous processing model
 date: 2019-09-28 22:09:92
-category: javascript
+category: Javascript
 ---
 
 동기식 처리 모델(Synchronous processing model)은 직렬적으로 태스크를 수행한다. 즉, 태스크는 순차적으로 실행되며 어떤 작업이 수행 중이면 다음 작업은 대기하게 된다.
