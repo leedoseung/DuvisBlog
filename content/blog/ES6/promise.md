@@ -1,7 +1,7 @@
 ---
 title: Promise
 date: 2019-10-05 23:10:03
-category: es6
+category: ES6
 ---
 
 ## Promise?
