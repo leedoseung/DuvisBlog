@@ -46,6 +46,7 @@ function task2(){
     task3();
 }
 
+
 functin task3(){
     console.log('task 3');
 }
@@ -57,7 +58,6 @@ task1();
 //task 2 
 
 ```
-
 
 함수 task1이 호출되면 함수 task1은 Call Stack에 쌓인다. 그리고 함수 task1은 함수 task2을 호출하므로 함수 task2가 Call Stack에 쌓이고 setTimeout가 호출된다. setTimeout의 콜백함수는 즉시 실행되지 않고 지정 대기 시간만큼 기다리다가 “tick” 이벤트가 발생하면 태스크 큐로 이동한 후 Call Stack이 비어졌을 때 Call Stack으로 이동되어 실행된다.
 
