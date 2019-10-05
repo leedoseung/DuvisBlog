@@ -78,6 +78,12 @@ const promise = new Promise((resolve, reject) => {
     }
 });
 
+```
+
+
+Promise를 사용하여 비동기 함수 정의
+
+
 |  상태 |  의미 |  구현 |
 |:--------|:--------|:--------:|
 |pending | 비동기 처리가 아직 수행되지 않은 상태 | resolve 또는 reject가 아직 호출되지 않은 상태 |
@@ -86,9 +92,6 @@ const promise = new Promise((resolve, reject) => {
 |settle | 비동기 처리가 수행된 상태(성공 또는 실패) | resolve 또는 reject 함수가 호출된 상태 |
 
 
-```
-
-Promise를 사용하여 비동기 함수 정의
 
 ```js
 
