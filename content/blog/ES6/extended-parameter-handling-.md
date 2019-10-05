@@ -1,7 +1,7 @@
 ---
 title: Extended Parameter Handling 
 date: 2019-10-02 22:10:74
-category: es6
+category: ES6
 ---
 
 ## 매개변수 기본값 (Default Parameter value)

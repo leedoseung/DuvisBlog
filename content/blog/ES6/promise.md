@@ -103,7 +103,7 @@ const promiseAjax = (method, url, payload) => {
 
         xhr.onreadystatechange = function () {
             //서버 응답 완료가 아니면 무시
-            if(xhr.readyState !=== XMLHttpRequest.DONE) return;
+            if(xhr.readyState !== XMLHttpRequest.DONE) return;
 
             if(xhr.state >= 200 && xhr.status < 400) {
                 // resolve 메소드를 호출하면서 처리 결과 전달
