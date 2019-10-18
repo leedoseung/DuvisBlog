@@ -12,7 +12,7 @@ category: CSS
 ## flexbox의 구성
 flexbox는 복수의 자식 요소인 flex item과 그 상위 부모 요소인 flex container로 구성된다.
 
-![] (https://d2.naver.com/content/images/2018/12/helloworld-201811-flex_01.png)
+![flexbox구성] (https://d2.naver.com/content/images/2018/12/helloworld-201811-flex_01.png)
 
 ```css
 
