@@ -124,6 +124,7 @@ align-items 속성은 주축을 기준으로 flex item을 수직으로 정렬한
 두가지 방법이 있다.
 
 1. flex container에 align-items: center 속성과 justify-content:center 속성을 적용해 아이콘에 해당하는 flex item을 화면 정중앙에 정렬
+
 ```css
 
 .flex_container {
