@@ -80,7 +80,7 @@ flex-item의 margin
 ![](https://d2.naver.com/content/images/2018/12/helloworld-201811-flex_15.png)
 
 
-브라우저 화면 아래 푸터
+**브라우저 화면 아래 푸터**
 
 ![](https://d2.naver.com/content/images/2018/12/helloworld-201811-flex_16.png)
 
@@ -96,7 +96,7 @@ flex-item의 margin
 
 ```
 
-정렬이 다른 메뉴
+**정렬이 다른 메뉴**
 
 ![](https://d2.naver.com/content/images/2018/12/helloworld-201811-flex_18.png)
 
@@ -119,7 +119,7 @@ align-items 속성은 주축을 기준으로 flex item을 수직으로 정렬한
 ![](https://d2.naver.com/content/images/2018/12/helloworld-201811-flex_21.png)
 
 
-중앙 정렬 아이콘
+**중앙 정렬 아이콘**
 
 두가지 방법이 있다.
 
@@ -149,7 +149,7 @@ align-items 속성은 주축을 기준으로 flex item을 수직으로 정렬한
 
 ```
 
-유동 너비 박스
+**유동 너비 박스**
 
 유동 너비 박스는 flex container인 부모 요소 크기에 따라 flex item인 자식 요소의 크기가 콘텐츠의 크기보다
 줄어두는 레이아웃이다.
@@ -168,7 +168,7 @@ align-items 속성은 주축을 기준으로 flex item을 수직으로 정렬한
 
 flex item의 크기에 관련된 속성인 flex 속성의 기본값은 0 1 auto다. 그래서 flex container의 크기가 커질 때는 flex item의 크기는 변하지 않지만, flex container의 크기가 작아지면 flex item의 크기가 작아진다.
 
-말줄임과 아이콘
+**말줄임과 아이콘**
 
 
 ```css
@@ -187,3 +187,43 @@ flex item의 크기에 관련된 속성인 flex 속성의 기본값은 0 1 auto�
 ```
 
 display: inline-flex 속성은 dispaly:inline-block이랑 같은 의미
+
+**위아래로 흐르는 목록**
+![](https://d2.naver.com/content/images/2018/12/helloworld-201811-flex_29.png)
+
+```css
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-around;
+}
+
+```
+
+flex-wrap은 flex item이 flex container를 벗어났을 때 줄을 바꾸는 속성이다.
+white-space속성과 동일
+
+![](https://d2.naver.com/content/images/2018/12/helloworld-201811-flex_31.png)
+
+
+flex-direction 속성과 flex-wrap 속성을 flex-flow속성으로 단축해 사용할 수 있음.
+
+```css
+
+.flex-container {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+```
+
+justify-content 속성
+
+![](https://d2.naver.com/content/images/2018/12/helloworld-201811-flex_32.png)
+
+수평 정렬의 기준은 align-content 속성으로 설정하고, 수직 정렬의 기준은 justify-content 속성으로 설정
+
+![](https://d2.naver.com/content/images/2018/12/helloworld-201811-flex_33.png)
