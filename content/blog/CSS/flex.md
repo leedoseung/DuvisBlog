@@ -227,3 +227,36 @@ justify-content 속성
 수평 정렬의 기준은 align-content 속성으로 설정하고, 수직 정렬의 기준은 justify-content 속성으로 설정
 
 ![](https://d2.naver.com/content/images/2018/12/helloworld-201811-flex_33.png)
+
+**가로세로 비율을 유지하는 반응형 박스**
+
+```css
+
+.flex_container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex_item_list {
+  flex-basis: 33.3%;
+  display: flex;
+  flex-direction: column;
+}
+
+.flex_item_image {
+  flex: auto;
+
+  /* 
+
+  flex-grow :1;
+  flex-shrink:1;
+  flex-basis: auto;
+  
+   */
+}
+
+```
+
+flex-basis: 33.3%속성으로 자식 요소의 비율 고정
+
+![](https://d2.naver.com/content/images/2018/12/helloworld-201811-flex_35.png)
