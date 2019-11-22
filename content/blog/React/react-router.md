@@ -1,13 +1,13 @@
 ---
 title: React Router
 date: 2019-10-30 16:10:11
-category: Redux
+category: React
 ---
 
 # location
 
 ```js
-{ 
+{
     "pathname" : "/posts/3",
     "search" : "",
     "hash" : "",
@@ -43,10 +43,8 @@ match 객체는 주로 param를 조회하거나 서브 라우트를 만들 때 �
 block 함수는 페이지에서 벗어날 때, 사용자에게 정말 페이지를 떠나겠냐고 묻는 창을 띄웁니다.
 
 ```js
-const unblock = history.block('정말 떠나시겠습니까?');
+const unblock = history.block('정말 떠나시겠습니까?')
 
 // 막는 작업을 취소 할떄
-unblock();
-
+unblock()
 ```
-
