@@ -45,7 +45,7 @@ class Counter extends Component {
 }
 ```
 
-### state를 constructor에서 꺼내시
+### state를 constructor에서 꺼낼시
 
 ```js
 import React from 'react'
@@ -198,7 +198,7 @@ const Say = () => {
 const object = { a: 1, b: 2, c: 3 }
 const nextObject = { ...object, b: 2 }
 
-//배여 다루기
+//배열 다루기
 const array = [
   { id: 1, value: true },
   { id: 2, value: false },
