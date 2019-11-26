@@ -1,7 +1,7 @@
 ---
 title: Event Handling
 date: 2019-11-25 22:11:52
-category: react
+category: React
 ---
 
 ## useState를 사용하여 함수형 컴포넌트 구현
