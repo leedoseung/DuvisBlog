@@ -16,6 +16,7 @@ Life Cycle Category
 3. UnMount
 
 **Mount**
+
 DOM이 생성되고 웹 브라우저상에 나타나는 것은 Mount라고 한다.
 
 <마운트할 때 호출하는 메서드>
@@ -29,6 +30,7 @@ DOM이 생성되고 웹 브라우저상에 나타나는 것은 Mount라고 한�
 </ul>
 
 **Update**
+
 아래 네 가지 경우에 업데이트
 
 1. props가 바뀔 때
@@ -46,6 +48,7 @@ DOM이 생성되고 웹 브라우저상에 나타나는 것은 Mount라고 한�
 </ul>
 
 **UnMount**
+
 언마운트하기 => componentWillUnmount
 
 componentWillUnmount : 컴포넌트가 웹 브라우저상에서 사라지기 전에 호출하는 메서드
