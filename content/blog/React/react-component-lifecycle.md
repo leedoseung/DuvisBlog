@@ -20,6 +20,7 @@ Life Cycle Category
 DOM이 생성되고 웹 브라우저상에 나타나는 것은 Mount라고 한다.
 
 <마운트할 때 호출하는 메서드>
+
 컴포넌트 만들기 => constructor => getDerivedStateFromProps => render => componentDidMount
 
 <ul>
@@ -39,6 +40,7 @@ DOM이 생성되고 웹 브라우저상에 나타나는 것은 Mount라고 한�
 4. this.forceUpdate로 강제로 렌더링을 트리거할 때
 
 <업데이트할 때 호출하는 메서드>
+
 업데이트를 발생기키는 요인 => getDerivedStateFromProps => shouldComponentUpdate => render => getSnapshotBeforeUpdate => componentDidUpdate
 
 <ul>
@@ -52,3 +54,71 @@ DOM이 생성되고 웹 브라우저상에 나타나는 것은 Mount라고 한�
 언마운트하기 => componentWillUnmount
 
 componentWillUnmount : 컴포넌트가 웹 브라우저상에서 사라지기 전에 호출하는 메서드
+
+## 라이프사이클 메서드 살펴보기
+
+### render() 함수
+
+이 메서드 안에서 this.props와 this.state에 접급할 수 있으며, 리액트 요소를 반환
+
+**주의할점**
+
+render 메서드 안에서는 이벤트 설정이 아닌 곳에 setState를 사용하면 안되며, 브라우저의 DOM에 접근해서도 안 된다.
+DOM정보를 가져오거나 state에 변화를 줄 때는 componentDidMount에서 처리해야 한다.
+
+### componentDidMount 메서드
+
+```js
+componentDidMount() { ... }
+
+```
+
+컴포넌트를 만들고, 첫 렌더링을 다 마친 후 실행한다. 이 안에서 다른 자바스크립트 라이브러리 또는 프레임워크의 함수를 호출하거나
+이벤트 등록, setTimeout, setInterval, 네트워크 요청 같은 비동기 작업을 처리
+
+### shouldComponentUpdate 메서드
+
+```js
+shouldComponentUpdate(nextProps, nextState) { ... }
+
+```
+
+props 또는 state를 변경했을 때, 리렌더링을 시작할지 여부를 지정하는 메서드.
+이 메서드에서는 반드시 true or false 값을 반환해야 한다.
+
+default는 true이며 false 값을 반환한다면 업데이트 과정은 중지
+
+이 메서드 안에서 현재 props와 state는 this.props와 this.state로 접근하고,
+새로 설정 될 props 또는 state는 nextProps와 nextState로 접근할 수 있다.
+
+**최적화를 할때 사용하는 메서드**
+
+### componentDidUpdate 메서드
+
+```js
+componentDidUpdate(prevProps, prevState, snapshot) { ... }
+
+```
+
+리렌더링을 완료한 후 실행.
+업데이트 끝난 직후이므로, DOM관련 처리를 해도 무방.
+
+### componentWillUnmount 메서드
+
+컴포넌트를 DOM에서 제거할 때 실행.
+componentDidMount에서 등록한 이벤트 타이머, 직접 생성한 DOM이 있다면 여기서 제거 작업을 해야 한다.
+
+### componentDidCatch 메서드
+
+컴포넌트 렌더링 도중에 에러가 발생했을 때 애플리케이션 먹통이 되지 않고 오류 UI를 보여 줄 수 있게 해준다.
+
+```js
+componenetDidCatch(error, info) {
+    this.setState({
+        error: true
+    });
+    console.log( { error, info });
+}
+
+
+```
