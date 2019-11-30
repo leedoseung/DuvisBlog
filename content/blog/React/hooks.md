@@ -114,3 +114,83 @@ useEffect(() => {
   }
 })
 ```
+
+## useReducer
+
+리듀서는 현재 상태, 그리고 업데이트를 위해 필요한 정보를 담은 액션(action)값을 전달 받아 새로운 상태를 반환하는 함수이다.
+리듀서 함수에서 새로운 상태를 만들 때는 반드시 불변성을 지켜 주어야 한다.
+
+```js
+Counter.js
+
+import React, { useReducer } from 'react'
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'INCREMENT':
+      return { value: state.value + 1 }
+    case 'DECREMENT':
+      return { value: state.value - 1 }
+    default:
+      return state
+  }
+}
+const Counter = () => {
+  const [state, dispatch] = useReducer(reducer, { value: 0 })
+
+  return (
+    <div>
+      <p>
+        현재 카운트 값은 <b>{state.value}</b> 입니다.
+      </p>
+      <button onClick={() => dispatch({ type: 'INCREMENT' })}>PLUS</button>
+      <button onClick={() => dispatch({ type: 'DECREMENT' })}>MINUS</button>
+    </div>
+  )
+}
+
+export default Counter
+```
+
+```js
+Info.js
+
+import React, { useReducer } from 'react'
+
+function reducer(state, action) {
+  return {
+    ...state,
+    [action.name]: action.value,
+  }
+}
+
+const Info = () => {
+  const [state, dispatch] = useReducer(reducer, {
+    name: '',
+    nickName: '',
+  })
+
+  const { name, nickName } = state
+
+  const onChange = e => dispatch(e.target)
+
+  return (
+    <div>
+      <div>
+        <input name="name" onChange={onChange} value={name}></input>
+        <input name="nickName" onChange={onChange} value={nickName}></input>
+      </div>
+      <div>
+        <div>
+          <b>이름:</b> {name}
+        </div>
+        <div>
+          <b>닉네임:</b> {nickName}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Info
+```
