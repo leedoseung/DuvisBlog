@@ -313,7 +313,7 @@ useCallback은 useMemo와 상당히 비슷한 함수.
 Average.js
 
 
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useCallbck } from 'react'
 
 const getAverage = number => {
   console.log('Calculating average value...')
@@ -361,4 +361,156 @@ export default Average
 
 ```
 
-useCallback(function, []) 두 번째 파라미터 배열에는 어떤 값이 바뀌었을 때 함수를 생성해야 하는지 명시
+useCallback(function, []) 두 번째 파라미터 배열에는 어떤 값이 바뀌었을 때 함수를 생성해야 하는지 명시해야 한다.
+
+비여 있는 배열을 넣게 되면 컴포넌트가 렌더링될 때 단 한 번만 함수가 생성되며
+onInsert같이 배열에 number, list를 넣게 되면 인풋 내용이 바뀌거나 새로운 항목이 추가될 때마다 함수가 생성된다.
+
+## useRef
+
+함수형 컴포넌트에서 ref를 쉽게 사용할 수 있도록 해준다.
+Average 컴포넌트에서 **등록**버튼을 눌렀을 때 포커스가 인풋 쪽으로 넘어가도록 하는 코드
+
+```js
+
+Average.js
+
+
+import React, { useState, useMemo, useCallbck, useRef } from 'react'
+
+const getAverage = number => {
+  console.log('Calculating average value...')
+  if (number.length === 0) return 0
+  const sum = number.reduce((a, b) => a + b)
+  return sum / number.length
+}
+
+const Average = () => {
+  const [list, setList] = useState([])
+  const [number, setNumber] = useState('')
+  const inputEl = useRef(null);
+
+  const onChange = useCallback(e => {
+    setNumber(e.target.value)
+  },[]); // 컴포넌트가 처음 렌더링할 때만 함수 생성
+
+  const onInsert = useCallback(e => {
+    const nextList = list.concat(parseInt(number))
+    setList(nextList);
+    setNumber('');
+    inputEl.current.focus();
+  }),[ number, list]; // number 혹은 list가 바뀌었을 때만 함수 생성
+
+  //추가
+  const avg = useMemo(() => getAverage(list), [list])
+
+  return (
+    <div>
+      <div>
+        <input value={number} onChange={onChange} ref={inputEl} />
+        <button onClick={onInsert}>등록</button>
+      </div>
+      <ul>
+        {list.map((value, index) => (
+          <li key={index}>{value}</li>
+        ))}
+      </ul>
+      <div>
+        <b>평균값 : </b> {avg}
+      </div>
+    </div>
+  )
+}
+
+export default Average
+
+```
+
+### 로컬 변수 사용하기
+
+추가로 컴포넌트 로컬 변수를 사용해야 할 때도 useRef를 활용할 수 있다. 로컬 변수란 렌더링과 상관없이 바뀔 수 있는 값을 의미한다.
+
+class 형 로컬변수
+
+```js
+
+import React, { Component } from 'react';
+
+class MyComponent extends Component {
+  id = 1;
+  setId = (n) => {
+    this.id = n ;
+  }
+
+  printId = () => {
+    console.log(this.id);
+  }
+
+  ...
+}
+
+```
+
+함수 형 로컬변수
+
+```js
+
+import React, { useRef } from 'react';
+
+class MyComponent extends Component {
+  id = useRef(1);
+  setId = (n) => {
+    id.current = n;
+  }
+
+  printId = () => {
+    console.log(id.current);
+  }
+
+  ...
+}
+
+```
+
+이렇게 ref 안의 값이 바뀌어도 컴포넌트가 리렌더링되지 않는다는 점에 주의.
+
+## 커스텀 Hooks 만들기
+
+```js
+useInput.js
+
+import { useReducer } from 'react'
+
+function reducer(state, action) {
+  return {
+    ...state,
+    [action.name]: action.value,
+  }
+}
+
+export default function useInputs(initialForm) {
+  const [state, dispatch] = useReducer(reducer, initialForm)
+
+  const onChange = e => dispatch(e.target)
+
+  return [state, onChange]
+}
+```
+
+```js
+info.js
+
+import React from 'react'
+import useInputs from './useInputs'
+
+const info = () => {
+  const [state, onChange] = useInputs({
+    name: '',
+    nickName: '',
+  })
+
+  const [name, nickName] = state
+
+  ...
+}
+```
