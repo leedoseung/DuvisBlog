@@ -101,3 +101,160 @@ export default App
 ```
 
 `Provider`를 사용할 때는 value 값을 명시해 주어야 제대로 작동한다는 것을 꼭 기억할 것!
+
+## 동적 Contenxt 사용하기
+
+```js
+color.js
+
+import React, { createContext, useState } from 'react'
+
+const ColorContext = createContext({
+  state: { color: 'black', subcolor: 'red' },
+  actions: {
+    setColor: () => {},
+    setSubcolor: () => {},
+  },
+})
+
+const ColorProvider = ({ children }) => {
+  const [color, setColor] = useState('black')
+  const [subcolor, setSubcolor] = useState('red')
+
+  const value = {
+    state: { color, subcolor },
+    actions: { setColor, setSubcolor },
+  }
+
+  return <ColorContext.Provider value={value}>{children}</ColorContext.Provider>
+}
+
+// const ColorConsumer = ColorContext.Consumer 와 같음
+const { Consumer: ColorConsumer } = ColorContext
+
+export { ColorProvider, ColorConsumer }
+
+export default ColorContext
+```
+
+```js
+ColorBox.js
+
+import React from 'react'
+import { ColorConsumer } from '../contexts/color'
+
+const ColorBox = () => {
+  return (
+    <ColorConsumer>
+      {value => (
+        <>
+          <div
+            style={{
+              width: '64px',
+              height: '64px',
+              background: value.state.color,
+            }}
+          />
+          <div
+            style={{
+              width: '64px',
+              height: '64px',
+              background: value.state.subcolor,
+            }}
+          />
+        </>
+      )}
+    </ColorConsumer>
+  )
+}
+
+export default ColorBox
+```
+
+## 색상 선택 컴포넌트 만들기
+
+`Context`의 `actions`에 넣어 준 함수를 호출하는 컴포넌트 만들어보자.
+
+```js
+SelectColor.js
+
+import React from 'react'
+import { ColorConsumer } from '../contexts/color'
+
+const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
+
+const SelectColors = () => {
+  return (
+    <div>
+      <h2>색상을 선택하세요.</h2>
+      <ColorConsumer>
+        {({ actions }) => (
+          <div style={{ display: 'flex' }}>
+            {colors.map(color => (
+              <div
+                key={color}
+                style={{
+                  background: color,
+                  width: '24px',
+                  height: '24px',
+                  cursor: 'pointer',
+                }}
+                onClick={() => actions.setColor(color)}
+                onContextMenu={e => {
+                  e.preventDefault()
+                  actions.setSubcolor(color)
+                }}
+              />
+            ))}
+          </div>
+        )}
+      </ColorConsumer>
+      <hr />
+    </div>
+  )
+}
+
+export default SelectColors
+```
+
+## Consumer 대신 Hook 또는 static contextType 사용하기
+
+`Consumer` 대신 다른 방식을 사용하여 값을 받아오기
+
+### useContext Hook 사용하기
+
+```js
+ColorBox.js
+
+import React, { useContext } from 'react'
+import ColorContext from '../contexts/color'
+
+const ColorBox = () => {
+  const { state } = useContext(ColorContext)
+  return (
+    <>
+      <div
+        style={{
+          width: '64px',
+          height: '64px',
+          background: state.color,
+        }}
+      />
+      <div
+        style={{
+          width: '32px',
+          height: '32px',
+          background: state.subcolor,
+        }}
+      />
+    </>
+  )
+}
+
+export default ColorBox
+```
+
+컴포넌트 간에 상태를 교류해야 할 때 무조건 부모 -> 자식 흐름으로 Props를 통해 전달 해 주었는데,
+이제는 `Context API`를 통해 더욱 쉽게 상태를 교류할 수 있게 되었다.
+
+전역적으로 여기저기서 사용되는 상태가 있고 컴포넌트의 개수가 많은 상황이라면, `Context API`를 사용하는게 좋다.
