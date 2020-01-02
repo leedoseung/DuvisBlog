@@ -1,6 +1,6 @@
 ---
 title: Code Splitting
-date: 2019-01-02 11:00:10
+date: 2020-01-02 11:00:10
 category: React
 ---
 
