@@ -40,7 +40,7 @@ Java 개발자인 내게 프로토타입 기반 프로그래밍 방식은 좀 �
 //ES6
 
 class Person {
-    
+
     constructor(name) {
         this._name = name;
     }
@@ -66,23 +66,20 @@ constructor은 인스턴스를 생성하고 클래스 필드를 초기화하기 
 > 자바스크립트의 생성자 함수에서 this에 추가한 프로퍼티를 클래스 기반 객체지향 언어에서는 클래스 필드라 부름
 
 ```js
-
 // 클래스 선언문
 class Person {
-
   constructor(name) {
     // this는 클래스가 생성할 인스턴스를 가리킨다.
     // _name은 클래스 필드이다.
-    this._name = name;
+    this._name = name
   }
 }
 
 // 인스턴스 생성
-const me = new Person('Duvis');
-console.log(me); // Person {_name: "Duvis"}
-
-
+const me = new Person('Duvis')
+console.log(me) // Person {_name: "Duvis"}
 ```
+
 ## 적적 메소드
 
 static 키워드를 사용한다.
@@ -96,7 +93,7 @@ class Azo {
     }
 
     static staticMethod(){
-        /* 
+        /*
         정적 메소드는 this를 사용할 수 없다.
         정적 메소드는 내부에서 this는 클래스의 인스턴스가 아닌 클래스 자신을 가리킨다.
          */
@@ -111,7 +108,7 @@ class Azo {
 
     const azo = new Azo(232);
 
-    // 정적 메소드는 인스턴스로 호출할 수 없다  
+    // 정적 메소드는 인스턴스로 호출할 수 없다
     console.log(azo.staticMethod());// Uncaught TypeError: foo.staticMethod is not a function
 }
 
@@ -124,6 +121,7 @@ this를 사용할 수 없다.
 어플리케이션 전역에서 사용하는 유틸리티 함수를 생성할 때 주로 사용.
 
 ## 클래스 상속
+
 클래스 상속은 코드 재사용 관점에서 매우 유용.
 
 ### extends 키워드
